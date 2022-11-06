@@ -273,6 +273,9 @@ class CleanMergedSummits(QgsProcessingAlgorithm):
                 f['Notes'] = None
                 f['Cross'] = f['Merge']
                 f['Merge'] = None
+                
+            if f['Elevation'] != NULL and f['Col elevation'] != NULL:
+                f['Prominence'] = f['Elevation'] - f['Col elevation']
 
             sink.addFeature(f, QgsFeatureSink.FastInsert)
 
