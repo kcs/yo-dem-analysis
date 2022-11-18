@@ -1,4 +1,4 @@
 {
     "python_interpreter": "C:\\OSGeo4W\\bin\\python.exe",
-    "extra_paths": ["C:\\OSGeo4W\\apps\\Python39\\Lib", "c:\\OSGeo4W\\apps\\qgis-ltr\\python"]
+    "extra_paths": ["C:\\OSGeo4W\\apps\\Python39\\Lib", "C:\\OSGeo4W\\apps\\qgis-ltr\\python"]
 }
