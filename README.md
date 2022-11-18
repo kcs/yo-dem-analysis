@@ -1,5 +1,7 @@
 # Processing algorithms for SOTA summit analysis
 
+Implementation in the scripts folder. This folder can be added to QGIS Processing search path and will be automatically inserted into the Processing toolbox when QGIS starts
+
 ## Import Landserf summits
 
 1. add clipping border (optional) for example from GADM (gadm.org) select administrative division
@@ -20,3 +22,26 @@ high point — an example distance for merging can be up to 500m or 0.005 degree
 4. distance measurement is controlled by output layer CRS definition (not working yet)
 5. after merge, ridges (both summit and col) matching up will be collected into a multiline geometry
 6. the resulting layer can and should be manually refined for cross-matching and summit/col mismatching errors
+
+## Cleanup merged summits
+
+After manually inspecting the merged summit list the following options can be added to the _Notes_
+field:
+- **x** exchange col with another entry (stored in the _Merge_ field), if summits were crossmatched
+by Landserf, then this will select the correct col position
+- **m** merge summit into another one (identified in either the _Merge_ field or the _Cross_ field)
+
+## Calculate prominence for each DEM
+
+This script will calculate the prominences of summits from input vector from the specified DEM
+layers (by sampling the raster layer at the position of the summit and col) and store it in the output layer. This is just a reconing script.
+
+## Calculate relative stats for a DEM
+
+This script will calculate the input metrics for the statistic analysis about the DEM accuracy.
+- input vector layer is a summits layer containing the summits and cols actual positions and elevations and the linestrings with the detected values
+- a DEM raster layer has to be specified for the sampling input. The DEM layer must contain any of
+SRTM, ASTER, ALOS, TDX or GLO30 in the name to identify the DEM linestring to be used from the input vector
+
+The script will calculate the detected distance from the actual distance of summits/cols, and also return the actual elevations, the sampled elevation from the actual coordinates, the detected elevations and a best-guess crossmatch elevations. This values later on can be used to plot the
+statistical results.
